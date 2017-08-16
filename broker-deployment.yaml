@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zeebe-broker
+  namespace: zeebe
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zeebe-broker
+    spec:
+      containers:
+      - name: zeebe-broker
+        image: camunda/zeebe:0.1.1
+        ports:
+        - containerPort: 51015
+        - containerPort: 51016
+        - containerPort: 51017
+        volumeMounts:
+        - mountPath: /usr/local/zeebe/data
+          name: zeebe-data        
+      volumes:
+      - name: zeebe-data
+        persistentVolumeClaim:
+          claimName: zeebe-pvc

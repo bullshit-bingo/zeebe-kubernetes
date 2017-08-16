@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: zeebe-api
+    namespace: zeebe
+spec:
+  ports:
+      - protocol: TCP
+        port: 51015
+        targetPort: 51015 
+        name: client-api     
+      - protocol: TCP
+        port: 51016
+        targetPort: 51016        
+        name: management-api
+      - protocol: TCP
+        port: 51017
+        targetPort: 51017
+        name: replication-api        
+  selector:
+      app: zeebe-broker
