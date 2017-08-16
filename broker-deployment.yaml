@@ -8,19 +8,24 @@ spec:
   template:
     metadata:
       labels:
-        app: zeebe-broker
+        name: zeebe-broker
     spec:
       containers:
       - name: zeebe-broker
-        image: camunda/zeebe:0.1.1
+        image: docker.consulting.camunda.com/zeebe-configurable-host:latest
         ports:
         - containerPort: 51015
         - containerPort: 51016
         - containerPort: 51017
         volumeMounts:
         - mountPath: /usr/local/zeebe/data
-          name: zeebe-data        
+          name: zeebe-data  
+        env:
+        - name: ZEEBE_HOST
+          value: "zeebe-api.zeebe"      
       volumes:
       - name: zeebe-data
         persistentVolumeClaim:
           claimName: zeebe-pvc
+      imagePullSecrets:
+      - name: regsecret          

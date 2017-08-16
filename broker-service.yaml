@@ -18,4 +18,4 @@ spec:
         targetPort: 51017
         name: replication-api        
   selector:
-      app: zeebe-broker
+      name: zeebe-broker
