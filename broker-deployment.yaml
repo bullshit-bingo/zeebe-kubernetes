@@ -22,7 +22,7 @@ spec:
           name: zeebe-data  
         env:
         - name: ZEEBE_HOST
-          value: "zeebe-api.zeebe"      
+          value: zeebe-api.zeebe
       volumes:
       - name: zeebe-data
         persistentVolumeClaim:
